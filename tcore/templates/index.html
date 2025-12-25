@@ -1,0 +1,85 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %} {{setting.title}} {% endblock %}
+{% block page_description %} {{setting.description}} {% endblock %}
+{% block page_keywords %} {{setting.keywords}} {% endblock %}
+{% block extracss %}{% endblock %}
+
+{% block content%}
+<!--Slider-->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+
+   
+    <div class="carousel-inner">
+
+        {% for slider in Sliders %}
+        <div class="carousel-item 
+        {% if forloop.first %} active {% endif %}
+        ">
+            <img height="600" src="media/{{slider.image}}" class="d-block w-100" alt="{{slider.title}}">
+        </div>
+        {% endfor %}
+        
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!--Slider-->
+
+<!--Hakkımızda-->
+<div class="row mt-4 mb-4">
+    <div class="col-md-8">
+        <h2 class="mb-4">{{Abouts.title}}</h2>
+        <p>{{Abouts.content|safe|truncatechars:800}}</p>
+        
+        <a href="{%url 'abouts'%}" class="btn btn-primary">Daha Fazla</a>
+    </div>
+
+    <div class="col-md-4">
+        <img src="media/{{Abouts.image2}}" alt="Hakkımızda Resmi" class="img-fluid">
+    </div>
+</div>
+<!--Hakkımızda-->
+
+<!--Blogs-->
+
+
+<div class="row mt-4 mb-4">
+    <h2 class="mb-4">Paylaşımlar</h2>
+    
+    <!-- Card 1 -->
+    {% for input in Inputs|slice:"4" %}
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{input.title}}</h5>
+                <p class="card-text">{{input.message|safe|truncatechars:200}}</p>
+                <a href="{% url 'blog-detail' slug=input.slug %}" class="btn btn-primary">Detaylar</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="col-md-8">
+        <a href="{%url 'blog'%}" class="btn btn-primary">Daha Fazla</a>
+    </div>
+
+    
+</div>
+
+
+</div>
+<!--Blogs-->
+<p>
+
+
+ .   
+</p>
+
+{% endblock %}

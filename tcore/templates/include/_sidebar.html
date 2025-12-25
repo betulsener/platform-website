@@ -1,0 +1,48 @@
+{% load static %}
+{% load i18n %}
+
+<!-- Sidebar Area -->
+<div class="col-md-4">
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Arama</h5>
+            <form method="get" action="{% url 'blog-search' %}">
+                <div class="mb-3">
+                    <input type="text" name="q" class="form-control" placeholder="Arama yapın">
+                </div>
+                <button type="submit" class="btn btn-primary">Bul</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Popular Blogs -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title mb-4">Popüler Paylaşımlar</h5>
+            <ul class="list-group">
+                <!-- Blog 1 -->
+                {% for pblog in PBlogs %}
+                <li class="list-group-item">
+                    <a class="text-decoration-none" href="{% url 'blog-detail' pblog.slug %}"><h5 class="card-title">{{pblog.title}}</h5></a>
+                    <p class="card-text">{{pblog.message|safe|truncatechars:100}}</p>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- Tags Cloud -->
+    <div style="margin-bottom: 60px !important;" class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Tags</h5>
+            <!-- Tags cloud -->
+            <div class="col-md-12">
+                {% for tag in most_common_tags %}
+                <a href="{% url 'tag-detail' tag.name %}"><button type="button" class="btn btn-secondary my-2 me-1">{{tag.name}}{{tag.num_times}}</button></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

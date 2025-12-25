@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Analizler{% endblock %}
+{% block page_description %} Analizler sayfa içeriği {% endblock %}
+
+{% block extracss %}{% endblock %}
+{% block content %}
+<!--Analysis-->
+<div class="row mt-4 mb-4">
+    <h2 class="mb-4">Analizler</h2>
+
+    <!-- Card 1: Anahtar Kelimeler -->
+    <div class="col-md-4 mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Anahtar Kelimeler:</h5>
+                <p class="card-text">{{Analysiss.keywords}}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2: Kelime Bulutu -->
+    <div class="col-md-8 mt-3">
+        <div class="card" style="height: 100%;">
+            <div class="card-body">
+                <h5 class="card-title">Kelime Bulutu:</h5>
+                <img src="media/analysis/wordcloud.png" class="d-block w-100" alt="{{Abouts.title}}" style="height: auto; width: 100%; object-fit: contain;">
+                <p class="text-light">.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Services-->
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Blog{% endblock %}
+{% block page_description %}Senaryo sayfa içeriği {% endblock %}
+
+{% block extracss %}{% endblock %}
+{% block content %}
+
+   <!--Blogs-->
+<div class="row mt-4 mb-4">
+    <!-- Main Content Area -->
+    <div class="col-md-8">
+        <h2 class="mb-4">Senaryolar</h2>
+        <!-- Blog Cards (Assuming you will have dynamic content) -->
+        <div class="col-md-12 mb-3">
+            <!-- Card 1 -->
+            <h3>Senaryo yükle</h3>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Upload</button>
+             </form>
+             <h3>Diğer Senaryolar</h3>
+             <ul>
+                {% for scenario in scenarios %}
+                    <li>
+                        <h2>{{ scenario.title }}</h2>
+                        <p>{{ scenario.description }}</p>
+                        <a href="{{ scenario.pdf.url }}">Download PDF</a>
+                        <p>Uploaded by: {{ scenario.uploaded_by.username }} at {{ scenario.uploaded_at }}</p>
+                    </li>
+                {% endfor %}
+             </ul>
+
+
+            <nav style="margin-bottom: 50px !important;" aria-label="Page navigation example">
+                <ul class="pagination">
+
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="?page={{num}}">{{num}}</a></li>
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    {% include 'include/_sidebar.html' %}
+    
+</div>
+<!--Blogs-->
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{Abouts.title}}{% endblock %}
+{% block page_description %} Hakkımızda sayfa içeriği {% endblock %}
+
+{% block extracss %}{% endblock %}
+{% block content %}
+<!--Hakkımızda-->
+<div class="row">
+  
+    <div class="container text-center mt-4">
+        <img src="media/{{Abouts.image}}" class="d-block w-100" alt="{{Abouts.title}}">
+        <p class="text-light">.</p>
+    </div>
+
+
+    <div class="col-md-12 mb-4">
+        <h2 class="mb-4">Hakkımızda</h2>
+        <p>{{Abouts.content|safe}}</p>
+            
+    </div>
+
+   
+</div>
+<!--Hakkımızda-->
+{% endblock %}

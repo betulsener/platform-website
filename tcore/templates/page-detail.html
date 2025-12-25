@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{page.title}}{% endblock %}
+
+{% block extracss %}{% endblock %}
+{% block content %}
+
+   <!--pages-->
+<div class="row mt-4 mb-4">
+    <!-- Main Content Area -->
+    <div class="col-md-8">
+        <h2 class="mb-4">{{page.title}}</h2>
+        <!-- page Cards (Assuming you will have dynamic content) -->
+        <div class="col-md-12 mb-3">
+            <!-- Card 1 -->
+         
+            <div class="mb-3">
+             
+                    <p class="card-text">{{page.content|safe}}</p>
+                
+            </div>
+
+        </div>
+    </div>
+
+    {% include 'include/_sidebar.html' %}
+    
+</div>
+<!--pages-->
+
+
+{% endblock %}

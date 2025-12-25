@@ -1,0 +1,23 @@
+[
+    {
+        "model": "tcore.page",
+        "pk": 1,
+        "fields": {
+            "title": "Sayfa 01",
+            "content": "İçerik 01",
+            "slug": "sayfa-01"
+
+        }
+
+    },
+    {
+        "model": "tcore.page",
+        "pk": 2,
+        "fields": {
+            "title": "Sayfa 02",
+            "content": "İçerik 02",
+            "slug": "sayfa-02"
+        }
+
+    }
+]

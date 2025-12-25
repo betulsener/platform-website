@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{input.title}}{% endblock %}
+
+{% block extracss %}{% endblock %}
+{% block content %}
+
+   <!--Blogs-->
+<div class="row mt-4 mb-4">
+    <!-- Main Content Area -->
+    <div class="col-md-8">
+        <h2 class="mb-4">{{input.title}}</h2>
+        <!-- Blog Cards (Assuming you will have dynamic content) -->
+        <div class="col-md-12 mb-3">
+            <!-- Card 1 -->
+         
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p>Görüntülenme sayısı: {{input.views}}</p>
+                    <p class="card-text">{{input.message|safe}}</p>
+                    <p class="card-text">Anahtar Kelimeler: {{input.keywords}}</p>
+                    <p class="card-text">Anahtar kelimeler NLP analizi sonucu elde edilmiştir.</p>
+                    <p>Etiketler:</p>
+                    {% for tag in input.tags.all %}
+                    <a href="{% url 'tag-detail' tag.name %}"><button type="button" class="btn btn-secondary my-2 me-1">{{tag.name}}</button></a>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% include 'include/_sidebar.html' %}
+    
+</div>
+<!--Blogs-->
+
+
+{% endblock %}
