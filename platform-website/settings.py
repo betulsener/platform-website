@@ -12,6 +12,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # .env dosyasını yükler
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG") == "True"
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.getenv("DATABASE_NAME"),
+    }
+}
+MODELTRANSLATION_DEFAULT_LANGUAGE = os.getenv("MODELTRANSLATION_DEFAULT_LANGUAGE")
+MODELTRANSLATION_LANGUAGE = tuple(os.getenv("MODELTRANSLATION_LANGUAGE").split(","))
+TIME_ZONE = os.getenv("TIME_ZONE")
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
